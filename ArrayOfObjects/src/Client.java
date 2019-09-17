@@ -9,7 +9,7 @@ public class Client extends GBFrame{
 	JTextArea results = addTextArea("",1,1,5,5);
 	
 	private final int EMPLOYEES = 10;
-	private final int COLUMNS = 8;
+	private final int COLUMNS = 16;
 	
 	private String baseTextArea = "";
 	
@@ -22,7 +22,7 @@ public class Client extends GBFrame{
 		if(button == addEmployeeButton) {
 			AddEmployee empDialog = new AddEmployee(this);
 			empDialog.setVisible(true);
-			empDialog.setSize(400,150);
+			empDialog.setSize(400,300);
 			
 			if(empDialog.getDlgCloseIndicator().equals("Confirm")) {
 				addEmployee(empDialog.getEmployee());
@@ -37,21 +37,22 @@ public class Client extends GBFrame{
 		Client frm = new Client();
 		frm.setVisible(true);
 		frm.setTitle("Array of Objects");
-		frm.setSize(400,600);
+		frm.setSize(800,400);
 	}
 	
 	public Client() {
 		results.setEditable(false);
 		
 		String nameLabel = Format.justify('l', "Name", 10);
-		String q1Label = Format.justify('l', "Q1", COLUMNS);
-		String q2Label = Format.justify('l', "Q2", COLUMNS);
-		String q3Label = Format.justify('l', "Q3", COLUMNS);
-		String q4Label = Format.justify('l', "Q4", COLUMNS-5);
+		String q1Label = Format.justify('c', "Q1", COLUMNS);
+		String q2Label = Format.justify('c', "Q2", COLUMNS);
+		String q3Label = Format.justify('c', "Q3", COLUMNS);
+		String q4Label = Format.justify('c', "Q4", COLUMNS);
+		String totalLabel = Format.justify('c', "Total", COLUMNS);
 		
-		String lineBreak = "-------------------------------------";
+		String lineBreak = "------------------------------------------------------------------------------------------------------";
 		
-		baseTextArea = nameLabel + q1Label + q2Label + q3Label + q4Label + '\n' + lineBreak;
+		baseTextArea = nameLabel + q1Label + q2Label + q3Label + q4Label + totalLabel + '\n' + lineBreak;
 		
 		results.setText(baseTextArea);
 	}
@@ -77,19 +78,30 @@ public class Client extends GBFrame{
 			
 			if(current == null) break;
 			
-			
-			
 			String name = Format.justify('l', current.getName(), 10);
-			String q1 = Format.justify('l', current.getSale(0), COLUMNS);
-			String q2 = Format.justify('l', current.getSale(1), COLUMNS);
-			String q3 = Format.justify('l', current.getSale(2), COLUMNS);
-			String q4 = Format.justify('l', current.getSale(3), COLUMNS-5);
+			String q1 = formatSale(current.getSale(0));
+			String q2 = formatSale(current.getSale(1));
+			String q3 = formatSale(current.getSale(2));
+			String q4 = formatSale(current.getSale(3));
+			String total = Format.justify('c', current.getTotal(), COLUMNS,2);
 			
-			resultStr += name + q1 + q2 + q3 + q4 + '\n';
+			resultStr += name + q1 + q2 + q3 + q4 + total + '\n';
 		}
 		//Format.justify('c', resultStr, 1);
 		results.setText(baseTextArea + "\n" + resultStr);
 		
+	}
+	
+	public String formatSale(double sale) {
+		String formatted = "";
+		
+		sale = Math.round(sale * 100.0) / 100.0;
+		
+		formatted = "$" + sale;
+		
+		formatted = Format.justify('c', formatted, COLUMNS);
+		
+		return formatted;
 	}
 	
 	

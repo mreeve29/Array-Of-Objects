@@ -1,9 +1,9 @@
 
 public class Employee {
-	private int[] sales = new int[4];
+	private double[] sales = new double[4];
 	private String name;
 	
-	public Employee(String name, int q1, int q2, int q3, int q4) {
+	public Employee(String name, double q1, double q2, double q3, double q4) {
 		this.name = name;
 		sales[0] = q1;
 		sales[1] = q2;
@@ -29,17 +29,17 @@ public class Employee {
 	}
 	
 	
-	public void setSales(int index, int sale) {
+	public void setSales(int index, double sale) {
 		sales[index] = sale;
 	}
 	
-	public void setSales(int[]newSales) {
+	public void setSales(double[]newSales) {
 		for(int i = 0; i < sales.length; i++) {
 			sales[i] = newSales[i];
 		}
 	}
 	
-	public void setSales(int q1, int q2, int q3, int q4) {
+	public void setSales(double q1, double q2, double q3, double q4) {
 		sales[0] = q1;
 		sales[1] = q2;
 		sales[2] = q3;
@@ -50,12 +50,20 @@ public class Employee {
 		return name;
 	}
 	
-	public int[] getSales() {
+	public double[] getSales() {
 		return sales;
 	}
 	
-	public int getSale(int index) {
+	public double getSale(int index) {
 		return sales[index];
+	}
+	
+	public double getTotal() {
+		double total = 0;
+		for(int i = 0; i < sales.length; i++) {
+			total += sales[i];
+		}
+		return total;
 	}
 	
 	

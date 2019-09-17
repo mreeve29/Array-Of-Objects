@@ -4,24 +4,22 @@ import javax.swing.*;
 
 public class AddEmployee extends GBDialog{
 
-	JButton confirmButton = addButton("Confirm",3,4,1,1);
+	JButton confirmButton = addButton("Confirm",3,1,1,1);
 	
-
-	//JLabel addEmployeeLabel = addLabel("Add Employee:",1,1,1,1);
 	JLabel employeeNameLabel = addLabel("Name:",1,1,1,1);
-	JTextField employeeNameField = addTextField("",1,2,1,4);
+	JTextField employeeNameField = addTextField("",1,2,4,4);
 	
 	JLabel employeeSalesLabel = addLabel("Sales:",2,1,1,1);
-	IntegerField q1Sales = addIntegerField(0,2,2,1,1);
-	IntegerField q2Sales = addIntegerField(0,2,3,1,1);
-	IntegerField q3Sales = addIntegerField(0,2,4,1,1);
-	IntegerField q4Sales = addIntegerField(0,2,5,1,1);
+	DoubleField q1Sales = addDoubleField(0,2,2,1,1);
+	DoubleField q2Sales = addDoubleField(0,2,3,1,1);
+	DoubleField q3Sales = addDoubleField(0,2,4,1,1);
+	DoubleField q4Sales = addDoubleField(0,2,5,1,1);
 	
 	
 	
 	public AddEmployee(JFrame arg0) {
 		super(arg0);
-		
+		this.setSize(300,300);
 	}
 	
 	private Employee emp = new Employee();
