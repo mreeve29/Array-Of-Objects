@@ -20,6 +20,7 @@ public class AddEmployee extends GBDialog{
 	public AddEmployee(JFrame arg0) {
 		super(arg0);
 		this.setSize(300,300);
+		this.setTitle("Add Employee");
 	}
 	
 	private Employee emp = new Employee();
@@ -31,11 +32,53 @@ public class AddEmployee extends GBDialog{
 	
 	public void buttonClicked(JButton button) {
 		if(button == confirmButton) {
+			
+			if(!errorCheck()) return;
+			
 			emp.setName(employeeNameField.getText());
 			emp.setSales(q1Sales.getNumber(), q2Sales.getNumber(), q3Sales.getNumber(), q4Sales.getNumber());
 			setDlgCloseIndicator("Confirm");
 		}
 		dispose();
 	}
+	
+	
+	public boolean errorCheck() {
+		String errors = "Error(s):\n";
+		boolean errBool = true;
+		
+		if(ErrorCheck.isBlank(employeeNameField)) {
+			errors += "Empty name\n";
+			errBool = false;
+		}
+		
+		if(!ErrorCheck.isValidNumber(q1Sales)) {
+			errors += "Invalid number in Q1\n";
+			errBool = false;
+		}
+		
+		if(!ErrorCheck.isValidNumber(q2Sales)) {
+			errors += "Invalid number in Q2\n";
+			errBool = false;
+		}
+		
+		if(!ErrorCheck.isValidNumber(q3Sales)) {
+			errors += "Invalid number in Q3\n";
+			errBool = false;
+		}
+		
+		if(!ErrorCheck.isValidNumber(q4Sales)) {
+			errors += "Invalid number in Q4\n";
+			errBool = false;
+		}
+		
+		if(!errBool) {
+			messageBox(errors);
+		}
+		
+		return errBool;
+	}
+	
+	
 	
 }
