@@ -15,10 +15,8 @@ public class AddEmployee extends GBDialog{
 	DoubleField q3Sales = addDoubleField(0,2,4,1,1);
 	DoubleField q4Sales = addDoubleField(0,2,5,1,1);
 	
-	
-	
-	public AddEmployee(JFrame arg0) {
-		super(arg0);
+	public AddEmployee(JFrame parent) {
+		super(parent);
 		this.setSize(300,300);
 		this.setTitle("Add Employee");
 	}
@@ -28,7 +26,6 @@ public class AddEmployee extends GBDialog{
 	public Employee getEmployee() {
 		return emp;
 	}
-	
 	
 	public void buttonClicked(JButton button) {
 		if(button == confirmButton) {
@@ -71,6 +68,12 @@ public class AddEmployee extends GBDialog{
 			errors += "Invalid number in Q4\n";
 			errBool = false;
 		}
+		
+		if(!ErrorCheck.isPositive(q1Sales)) {
+			errors += "Negative number in Q1\n";
+			errBool = false;
+		}
+		
 		
 		if(!errBool) {
 			messageBox(errors);

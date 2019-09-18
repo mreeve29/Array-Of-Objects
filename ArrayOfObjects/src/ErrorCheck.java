@@ -11,6 +11,41 @@ public class ErrorCheck {
 		}
 	}
 	
+	public static boolean isPositive(int x) {
+		if(x > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public static boolean isPositive(double x) {
+		if(x > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public static boolean isPositive(IntegerField field) {
+		int x = field.getNumber();
+		if(x > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public static boolean isPositive(DoubleField field) {
+		double x = field.getNumber();
+		if(x > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	
 	public static boolean isValidNumber(IntegerField field) {
 		if(field.isValidNumber()) {
 			return true;
@@ -28,7 +63,7 @@ public class ErrorCheck {
 	}
 	
 	public static boolean isBlank(String str) {
-		if(str == "" || str.isBlank()) {
+		if(str == "" || str.isEmpty()) {
 			return true;
 		}else {
 			return false;
@@ -37,7 +72,7 @@ public class ErrorCheck {
 	
 	public static boolean isBlank(JTextField field) {
 		String str = field.getText();
-		if(str == "" || str.isBlank()) {
+		if(str == "" || str.isEmpty()) {
 			return true;
 		}else {
 			return false;
