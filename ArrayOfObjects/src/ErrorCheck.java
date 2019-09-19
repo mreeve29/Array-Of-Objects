@@ -45,6 +45,24 @@ public class ErrorCheck {
 		}
 	}
 	
+	public static boolean isNegative(IntegerField field) {
+		int x = field.getNumber();
+		if(x < 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public static boolean isNegative(DoubleField field) {
+		double x = field.getNumber();
+		if(x < 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	
 	public static boolean isValidNumber(IntegerField field) {
 		if(field.isValidNumber()) {
