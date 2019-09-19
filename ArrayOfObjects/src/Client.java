@@ -1,12 +1,22 @@
 import BreezySwing.*;
+
+import java.text.DecimalFormat;
+
 import javax.swing.*;
 
 
 public class Client extends GBFrame{
 
+	DecimalFormat formatter = new DecimalFormat("$0.00");
 	
-	JButton addEmployeeButton = addButton("Add Employee",7,1,1,1);
-	JTextArea results = addTextArea("",1,1,5,5);
+	JButton addEmployeeButton = addButton("Add Employee",7,1,3,1);
+	JTextArea results = addTextArea("",1,1,3,5);
+	
+	final JLabel blankLine = addLabel("",8,1,3,1);
+	
+	JList employeeList = addList(9,2,1,1);
+	JTextArea emplyeeDeatils = addTextArea("textarea",9,1,1,1);
+	
 	
 	private final int EMPLOYEES = 10;
 	private final int COLUMNS = 16;
@@ -22,7 +32,7 @@ public class Client extends GBFrame{
 		if(button == addEmployeeButton) {
 			AddEmployee empDialog = new AddEmployee(this);
 			empDialog.setVisible(true);
-			empDialog.setSize(400,300);
+			empDialog.setSize(600,500);
 			
 			if(empDialog.getDlgCloseIndicator().equals("Confirm")) {
 				addEmployee(empDialog.getEmployee());
@@ -37,18 +47,18 @@ public class Client extends GBFrame{
 		Client frm = new Client();
 		frm.setVisible(true);
 		frm.setTitle("Array of Objects");
-		frm.setSize(800,400);
+		frm.setSize(800,800);
 	}
 	
 	public Client() {
 		results.setEditable(false);
 		
 		String nameLabel = Format.justify('l', "Name", 10);
-		String q1Label = Format.justify('c', "Q1", COLUMNS);
-		String q2Label = Format.justify('c', "Q2", COLUMNS);
-		String q3Label = Format.justify('c', "Q3", COLUMNS);
-		String q4Label = Format.justify('c', "Q4", COLUMNS);
-		String totalLabel = Format.justify('c', "Total", COLUMNS);
+		String q1Label = Format.justify('l', "  Q1", COLUMNS);
+		String q2Label = Format.justify('l', "  Q2", COLUMNS);
+		String q3Label = Format.justify('l', "  Q3", COLUMNS);
+		String q4Label = Format.justify('l', "  Q4", COLUMNS);
+		String totalLabel = Format.justify('l', "  Total", COLUMNS);
 		
 		String lineBreak = "------------------------------------------------------------------------------------------------------";
 		
@@ -83,11 +93,10 @@ public class Client extends GBFrame{
 			String q2 = formatSale(current.getSale(1));
 			String q3 = formatSale(current.getSale(2));
 			String q4 = formatSale(current.getSale(3));
-			String total = Format.justify('c', current.getTotal(), COLUMNS,2);
+			String total = formatSale(current.getTotal());
 			
 			resultStr += name + q1 + q2 + q3 + q4 + total + '\n';
 		}
-		//Format.justify('c', resultStr, 1);
 		results.setText(baseTextArea + "\n" + resultStr);
 		
 	}
@@ -97,10 +106,9 @@ public class Client extends GBFrame{
 		
 		sale = Math.round(sale * 100.0) / 100.0;
 		
-		formatted = "$" + sale;
+		formatted = formatter.format(sale);
 		
-		formatted = Format.justify('c', formatted, COLUMNS);
-		
+		formatted = Format.justify('l', formatted, COLUMNS);
 		return formatted;
 	}
 	
