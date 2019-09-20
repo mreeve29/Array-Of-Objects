@@ -66,6 +66,13 @@ public class Employee {
 		return total;
 	}
 	
+	public Employee(Employee e) {
+		name = e.getName();
+		sales[0] = e.getSale(0);
+		sales[1] = e.getSale(1);
+		sales[2] = e.getSale(2);
+		sales[3] = e.getSale(3);
+	}
 	
 	
 }

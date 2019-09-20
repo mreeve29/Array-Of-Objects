@@ -9,8 +9,10 @@ public class Client extends GBFrame{
 
 	DecimalFormat formatter = new DecimalFormat("$0.00");
 	
-	JButton addEmployeeButton = addButton("Add Employee",7,1,2,1);
-	JButton findEmployeeButton = addButton("Find Employee",7,3,3,1);
+	JButton addEmployeeButton = addButton("Add Employee",7,1,1,1);
+	JButton findEmployeeButton = addButton("Find Employee",7,2,1,1);
+	JButton highEmployeeButton = addButton("High Sales Employee",7,3,1,1);
+	JButton lowEmployeeButton = addButton("Low Sales Employee",7,4,1,1);
 	JTextArea results = addTextArea("",1,1,6,5);
 	
 	private final int EMPLOYEES = 10;
@@ -36,6 +38,9 @@ public class Client extends GBFrame{
 			EmployeeSelector selectorDialog = new EmployeeSelector(this, empArr);
 			selectorDialog.setVisible(true);
 			selectorDialog.setSize(800,600);
+		}else if(button == highEmployeeButton) {
+			Employee high = getHighestEmployee();
+			messageBox(high.toString());
 		}
 	}
 	
@@ -45,7 +50,7 @@ public class Client extends GBFrame{
 		try {
 			empArr[empsAdded] = e;
 			empsAdded++;
-			if(empsAdded > 0)findEmployeeButton.setEnabled(true);
+			if(empsAdded > 0)setButtons(true);
 			if(empsAdded >= 10)addEmployeeButton.setEnabled(false);
 		}catch (Exception exc) {
 			System.out.println("Too many employees");
@@ -90,7 +95,7 @@ public class Client extends GBFrame{
 
 
 	public Client() {
-		findEmployeeButton.setEnabled(false);
+		setButtons(false);
 		results.setEditable(false);
 		
 		String nameLabel = Format.justify('l', "Name", 10);
@@ -106,14 +111,44 @@ public class Client extends GBFrame{
 		
 		results.setText(baseTextArea);
 	}
+	
+	
+	public Employee getHighestEmployee() {
+		Employee returnEmp = empArr[0];
+		for(int i = 0; i < empArr.length-1; i++) {
+			Employee current = empArr[i+1];
+			if(current == null)break;
+			if(current.getTotal() > returnEmp.getTotal()) {
+				returnEmp = new Employee(current);
+			}
+		}
+		return returnEmp;
+	}
+	
+	public Employee getLowestEmployee() {
+		Employee returnEmp = empArr[0];
+		for(int i = 0; i < empArr.length-1; i++) {
+			Employee current = empArr[i+1];
+			if(current == null)break;
+			if(current.getTotal() < returnEmp.getTotal()) {
+				returnEmp = new Employee(current);
+			}
+		}
+		return returnEmp;
+	}
+	
 
-
+	public void setButtons(Boolean bool) {
+		findEmployeeButton.setEnabled(bool);
+		highEmployeeButton.setEnabled(bool);
+		lowEmployeeButton.setEnabled(bool);
+	}
 
 	public static void main(String[] args) {
 		Client frm = new Client();
 		frm.setVisible(true);
 		frm.setTitle("Array of Objects");
-		frm.setSize(700,300);
+		frm.setSize(750,300);
 	}
 	
 	

@@ -38,6 +38,11 @@ public class EmployeeSelector extends GBDialog{
 		updateSingleEmployeeText(empArr[list.getSelectedIndex()]);
 	}
 	
+	//Removes double click dialog
+	public void listDoubleClicked(JList list, String str) {
+		return;
+	}
+	
 	private void populateList() {
 		for(int i = 0; i < empArr.length; i++) {
 			Employee current = empArr[i];
