@@ -51,47 +51,47 @@ public class AddEmployee extends GBDialog{
 		String errors = "Error(s):\n";
 		boolean errBool = true;
 		
-		if(ErrorCheck.isBlank(employeeNameField)) {
+		if(ReeveHelper.isBlank(employeeNameField)) {
 			errors += "Empty name\n";
 			errBool = false;
 		}
 		
-		if(!ErrorCheck.isValidNumber(q1Sales)) {
+		if(!ReeveHelper.isValidNumber(q1Sales)) {
 			errors += "Invalid number in Q1\n";
 			errBool = false;
 		}
 		
-		if(!ErrorCheck.isValidNumber(q2Sales)) {
+		if(!ReeveHelper.isValidNumber(q2Sales)) {
 			errors += "Invalid number in Q2\n";
 			errBool = false;
 		}
 		
-		if(!ErrorCheck.isValidNumber(q3Sales)) {
+		if(!ReeveHelper.isValidNumber(q3Sales)) {
 			errors += "Invalid number in Q3\n";
 			errBool = false;
 		}
 		
-		if(!ErrorCheck.isValidNumber(q4Sales)) {
+		if(!ReeveHelper.isValidNumber(q4Sales)) {
 			errors += "Invalid number in Q4\n";
 			errBool = false;
 		}
 		
-		if(ErrorCheck.isNegative(q1Sales)) {
+		if(ReeveHelper.isNegative(q1Sales)) {
 			errors += "Negative number in Q1\n";
 			errBool = false;
 		}
 
-		if(ErrorCheck.isNegative(q2Sales)) {
+		if(ReeveHelper.isNegative(q2Sales)) {
 			errors += "Negative number in Q2\n";
 			errBool = false;
 		}
 		
-		if(ErrorCheck.isNegative(q3Sales)) {
+		if(ReeveHelper.isNegative(q3Sales)) {
 			errors += "Negative number in Q3\n";
 			errBool = false;
 		}
 		
-		if(ErrorCheck.isNegative(q4Sales)) {
+		if(ReeveHelper.isNegative(q4Sales)) {
 			errors += "Negative number in Q4\n";
 			errBool = false;
 		}

@@ -51,7 +51,7 @@ public class EmployeeSelector extends GBDialog{
 		}
 	}
 	
-	public void addItemToList(String add) {
+	private void addItemToList(String add) {
 		DefaultListModel model = (DefaultListModel)employeeList.getModel();
         model.addElement(add);
 	}

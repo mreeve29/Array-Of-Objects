@@ -1,7 +1,7 @@
 import BreezySwing.*;
 import javax.swing.*;
 
-public class ErrorCheck {
+public class ReeveHelper {
 	
 	public static boolean isInt(double x) {
 		if((int)x == x) {
@@ -63,6 +63,23 @@ public class ErrorCheck {
 		}
 	}
 	
+	public static boolean isZero(IntegerField field) {
+		int x = field.getNumber();
+		if(x == 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public static boolean isZero(DoubleField field) {
+		double x = field.getNumber();
+		if(x == 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 	public static boolean isValidNumber(IntegerField field) {
 		if(field.isValidNumber()) {
@@ -97,6 +114,9 @@ public class ErrorCheck {
 		}
 	}
 	
+	public static double roundMoney(double x) {
+		return Math.round(x * 100.0) / 100.0;
+	}
 	
 	
 }

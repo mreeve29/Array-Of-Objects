@@ -39,14 +39,15 @@ public class Client extends GBFrame{
 			selectorDialog.setVisible(true);
 			selectorDialog.setSize(800,600);
 		}else if(button == highEmployeeButton) {
-			Employee high = getHighestEmployee();
-			messageBox(high.toString());
+			messageBox("Employee(s) With The Highest Sales:\n" + getHighestEmployees());
+		}else if(button == lowEmployeeButton) {
+			messageBox("Employee(s) With The Lowest Sales:\n" + getLowestEmployees());
 		}
 	}
 	
 	
 	
-	public void addEmployee(Employee e) {
+	private void addEmployee(Employee e) {
 		try {
 			empArr[empsAdded] = e;
 			empsAdded++;
@@ -62,7 +63,7 @@ public class Client extends GBFrame{
 
 
 
-	public void updateTextArea() {
+	private void updateTextArea() {
 		String resultStr = "";
 		for(int i = 0; i < empArr.length; i++) {
 			Employee current = empArr[i];
@@ -82,10 +83,10 @@ public class Client extends GBFrame{
 		
 	}
 	
-	public String formatSale(double sale) {
+	private String formatSale(double sale) {
 		String formatted = "";
 		
-		sale = Math.round(sale * 100.0) / 100.0;
+		sale = ReeveHelper.roundMoney(sale);
 		
 		formatted = formatter.format(sale);
 		
@@ -105,7 +106,7 @@ public class Client extends GBFrame{
 		String q4Label = Format.justify('l', "  Q4", COLUMNS);
 		String totalLabel = Format.justify('l', "  Total", COLUMNS);
 		
-		String lineBreak = "-------------------------------------------------------------------------------------------------";
+		String lineBreak = "----------------------------------------------------------------------------------------------------";
 		
 		baseTextArea = nameLabel + q1Label + q2Label + q3Label + q4Label + totalLabel + '\n' + lineBreak;
 		
@@ -113,32 +114,52 @@ public class Client extends GBFrame{
 	}
 	
 	
-	public Employee getHighestEmployee() {
-		Employee returnEmp = empArr[0];
+	private String getHighestEmployees() {
+		Employee baseEmp = empArr[0];
+		String employees = baseEmp.getName() + ": " + formatter.format(ReeveHelper.roundMoney(baseEmp.getTotal())) + "\n";
+		
 		for(int i = 0; i < empArr.length-1; i++) {
 			Employee current = empArr[i+1];
+			
 			if(current == null)break;
-			if(current.getTotal() > returnEmp.getTotal()) {
-				returnEmp = new Employee(current);
+			
+			double baseTotal = ReeveHelper.roundMoney(baseEmp.getTotal());
+			double currentTotal = ReeveHelper.roundMoney(current.getTotal());
+			
+			
+			if(currentTotal > baseTotal) {
+				employees = current.getName() + ": " + formatter.format(currentTotal) + "\n";
+			}else if(currentTotal == baseTotal) {
+				employees += current.getName() + ": " + formatter.format(currentTotal) + "\n";
 			}
 		}
-		return returnEmp;
+		return employees;
 	}
 	
-	public Employee getLowestEmployee() {
-		Employee returnEmp = empArr[0];
+	private String getLowestEmployees() {
+		Employee baseEmp = empArr[0];
+		String employees = baseEmp.getName() + ": " + formatter.format(ReeveHelper.roundMoney(baseEmp.getTotal())) + "\n";
+		
 		for(int i = 0; i < empArr.length-1; i++) {
 			Employee current = empArr[i+1];
+			
 			if(current == null)break;
-			if(current.getTotal() < returnEmp.getTotal()) {
-				returnEmp = new Employee(current);
+			
+			double baseTotal = ReeveHelper.roundMoney(baseEmp.getTotal());
+			double currentTotal = ReeveHelper.roundMoney(current.getTotal());
+			
+			
+			if(currentTotal < baseTotal) {
+				employees = current.getName() + ": " + formatter.format(currentTotal) + "\n";
+			}else if(currentTotal == baseTotal) {
+				employees += current.getName() + ": " + formatter.format(currentTotal) + "\n";
 			}
 		}
-		return returnEmp;
+		return employees;
 	}
 	
 
-	public void setButtons(Boolean bool) {
+	private void setButtons(Boolean bool) {
 		findEmployeeButton.setEnabled(bool);
 		highEmployeeButton.setEnabled(bool);
 		lowEmployeeButton.setEnabled(bool);
