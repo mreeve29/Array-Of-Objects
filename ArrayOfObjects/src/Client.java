@@ -7,13 +7,13 @@ import javax.swing.*;
 
 public class Client extends GBFrame{
 
-	DecimalFormat formatter = new DecimalFormat("$0.00");
+	private DecimalFormat formatter = new DecimalFormat("$0.00");
 	
-	JButton addEmployeeButton = addButton("Add Employee",7,1,1,1);
-	JButton findEmployeeButton = addButton("Find Employee",7,2,1,1);
-	JButton highEmployeeButton = addButton("High Sales Employee",7,3,1,1);
-	JButton lowEmployeeButton = addButton("Low Sales Employee",7,4,1,1);
-	JTextArea results = addTextArea("",1,1,6,5);
+	private JButton addEmployeeButton = addButton("Add Employee",7,1,1,1);
+	private JButton findEmployeeButton = addButton("Find Employee",7,2,1,1);
+	private JButton highEmployeeButton = addButton("High Sales Employee",7,3,1,1);
+	private JButton lowEmployeeButton = addButton("Low Sales Employee",7,4,1,1);
+	private JTextArea results = addTextArea("",1,1,6,5);
 	
 	private final int EMPLOYEES = 10;
 	private final int COLUMNS = 16;

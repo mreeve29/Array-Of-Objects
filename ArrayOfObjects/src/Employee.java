@@ -19,6 +19,14 @@ public class Employee {
 	}
 	
 	
+	public Employee(Employee e) {
+		name = e.getName();
+		sales[0] = e.getSale(0);
+		sales[1] = e.getSale(1);
+		sales[2] = e.getSale(2);
+		sales[3] = e.getSale(3);
+	}
+
 	public String toString() {
 		return name + ": " + sales[0] + ", " + sales[1] + ", " + sales[2] + ", " + sales[3];
 	}
@@ -30,6 +38,7 @@ public class Employee {
 	
 	
 	public void setSales(int index, double sale) {
+		if(index > 3 || index < 0) return;
 		sales[index] = sale;
 	}
 	
@@ -55,6 +64,7 @@ public class Employee {
 	}
 	
 	public double getSale(int index) {
+		if(index > 3 || index < 0) return 0;
 		return sales[index];
 	}
 	
@@ -64,14 +74,6 @@ public class Employee {
 			total += sales[i];
 		}
 		return total;
-	}
-	
-	public Employee(Employee e) {
-		name = e.getName();
-		sales[0] = e.getSale(0);
-		sales[1] = e.getSale(1);
-		sales[2] = e.getSale(2);
-		sales[3] = e.getSale(3);
 	}
 	
 	
