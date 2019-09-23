@@ -129,6 +129,7 @@ public class Client extends GBFrame{
 			
 			if(currentTotal > baseTotal) {
 				employees = current.getName() + ": " + formatter.format(currentTotal) + "\n";
+				baseEmp = current;
 			}else if(currentTotal == baseTotal) {
 				employees += current.getName() + ": " + formatter.format(currentTotal) + "\n";
 			}
@@ -148,9 +149,9 @@ public class Client extends GBFrame{
 			double baseTotal = ReeveHelper.roundMoney(baseEmp.getTotal());
 			double currentTotal = ReeveHelper.roundMoney(current.getTotal());
 			
-			
 			if(currentTotal < baseTotal) {
 				employees = current.getName() + ": " + formatter.format(currentTotal) + "\n";
+				baseEmp = current;
 			}else if(currentTotal == baseTotal) {
 				employees += current.getName() + ": " + formatter.format(currentTotal) + "\n";
 			}
