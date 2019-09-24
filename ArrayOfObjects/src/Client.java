@@ -26,7 +26,7 @@ public class Client extends GBFrame{
 	
 	public void buttonClicked(JButton button) {
 		if(button == addEmployeeButton) {
-			AddEmployee empDialog = new AddEmployee(this);
+			AddEmployeeDialog empDialog = new AddEmployeeDialog(this);
 			empDialog.setVisible(true);
 			empDialog.setSize(600,500);
 			

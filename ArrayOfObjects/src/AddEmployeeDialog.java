@@ -1,7 +1,7 @@
 import BreezySwing.*;
 import javax.swing.*;
 
-public class AddEmployee extends GBDialog{
+public class AddEmployeeDialog extends GBDialog{
 
 	private JButton confirmButton = addButton("Confirm",4,1,1,1);
 	
@@ -22,7 +22,7 @@ public class AddEmployee extends GBDialog{
 	
 	private Employee emp = new Employee();
 	
-	public AddEmployee(JFrame parent) {
+	public AddEmployeeDialog(JFrame parent) {
 		super(parent);
 		this.setSize(500,175);
 		this.setTitle("Add Employee");
