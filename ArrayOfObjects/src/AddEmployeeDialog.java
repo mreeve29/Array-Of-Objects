@@ -2,7 +2,7 @@ import BreezySwing.*;
 import javax.swing.*;
 
 public class AddEmployeeDialog extends GBDialog{
-
+	//instance class variables
 	private JButton confirmButton = addButton("Confirm",4,1,1,1);
 	
 	private JLabel employeeNameLabel = addLabel("Name:",1,1,1,1);
@@ -22,16 +22,19 @@ public class AddEmployeeDialog extends GBDialog{
 	
 	private Employee emp = new Employee();
 	
+	//constructor
 	public AddEmployeeDialog(JFrame parent) {
 		super(parent);
 		this.setSize(500,175);
 		this.setTitle("Add Employee");
 	}
 	
+	//returns employee when closed
 	public Employee getEmployee() {
 		return emp;
 	}
 	
+	//button listener
 	public void buttonClicked(JButton button) {
 		if(button == confirmButton) {
 			
@@ -41,10 +44,11 @@ public class AddEmployeeDialog extends GBDialog{
 			emp.setSales(q1Sales.getNumber(), q2Sales.getNumber(), q3Sales.getNumber(), q4Sales.getNumber());
 			setDlgCloseIndicator("Confirm");
 		}
+		//closes the dialog
 		dispose();
 	}
 	
-	
+	//error check
 	private boolean errorCheck() {
 		String errors = "Error(s):\n";
 		boolean errBool = true;
@@ -101,7 +105,4 @@ public class AddEmployeeDialog extends GBDialog{
 		
 		return errBool;
 	}
-	
-	
-	
 }

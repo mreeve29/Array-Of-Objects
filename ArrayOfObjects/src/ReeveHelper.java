@@ -1,6 +1,6 @@
 import BreezySwing.*;
 import javax.swing.*;
-
+//helper class
 public class ReeveHelper {
 	
 	public static boolean isInt(double x) {
