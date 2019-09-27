@@ -78,27 +78,6 @@ public class AddEmployeeDialog extends GBDialog{
 			errBool = false;
 		}
 		
-		if(ReeveHelper.isNegative(q1Sales)) {
-			errors += "Negative number in Q1\n";
-			errBool = false;
-		}
-
-		if(ReeveHelper.isNegative(q2Sales)) {
-			errors += "Negative number in Q2\n";
-			errBool = false;
-		}
-		
-		if(ReeveHelper.isNegative(q3Sales)) {
-			errors += "Negative number in Q3\n";
-			errBool = false;
-		}
-		
-		if(ReeveHelper.isNegative(q4Sales)) {
-			errors += "Negative number in Q4\n";
-			errBool = false;
-		}
-		
-		
 		if(!errBool) {
 			messageBox(errors);
 		}
